@@ -25,7 +25,19 @@ class ComfyUIManager:
         """初始化"""
         self.logger = Logger()
         self.system = platform.system()
-        self.comfyui_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "ComfyUI")
+        # 尝试从配置文件读取安装路径
+        config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "config.json")
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    config = json.load(f)
+                    install_path = config.get("install_path", os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+                    self.comfyui_path = os.path.join(install_path, "ComfyUI")
+            except Exception as e:
+                self.logger.error(f"读取配置文件失败: {e}")
+                self.comfyui_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "ComfyUI")
+        else:
+            self.comfyui_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "ComfyUI")
         self.running_processes: Dict[int, subprocess.Popen] = {}
     
     def check_comfyui_installed(self) -> bool:
@@ -64,18 +76,72 @@ class ComfyUIManager:
             
             self.logger.info("开始更新ComfyUI")
             
-            # 执行git pull
-            result = subprocess.run(["git", "pull"], 
-                                  cwd=self.comfyui_path, 
-                                  capture_output=True, text=True,
-                                  creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+            # 尝试从不同的远程仓库拉取最新版本
+            repo_urls = [
+                "https://github.com/comfyanonymous/ComfyUI.git",
+                "https://gitee.com/ComfyUI/ComfyUI.git"  # Gitee镜像
+            ]
             
-            if result.returncode == 0:
-                self.logger.info("ComfyUI更新成功")
-                return {"status": "success", "message": "ComfyUI更新成功"}
-            else:
-                self.logger.error(f"ComfyUI更新失败: {result.stderr}")
-                return {"status": "error", "message": f"更新失败: {result.stderr}"}
+            for url in repo_urls:
+                self.logger.info(f"尝试从 {url} 更新ComfyUI")
+                
+                # 先设置远程仓库
+                remote_result = subprocess.run(["git", "remote", "set-url", "origin", url], 
+                                              cwd=self.comfyui_path, 
+                                              capture_output=True, text=True,
+                                              creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                
+                # 先尝试 stash 本地更改
+                stash_result = subprocess.run(["git", "stash", "push", "-m", "temp stash"], 
+                                           cwd=self.comfyui_path, 
+                                           capture_output=True, text=True,
+                                           creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                
+                if stash_result.returncode != 0:
+                    self.logger.warning(f"Stash 本地更改失败: {stash_result.stderr}")
+                
+                # 执行git pull
+                result = subprocess.run(["git", "pull"], 
+                                      cwd=self.comfyui_path, 
+                                      capture_output=True, text=True,
+                                      creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                
+                if result.returncode == 0:
+                    self.logger.info(f"从 {url} 更新ComfyUI成功")
+                    
+                    # 尝试获取并切换到最新的标签版本
+                    tag_result = subprocess.run(["git", "describe", "--tags", "--abbrev=0"], 
+                                               cwd=self.comfyui_path, 
+                                               capture_output=True, text=True,
+                                               creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                    
+                    if tag_result.returncode == 0:
+                        latest_tag = tag_result.stdout.strip()
+                        self.logger.info(f"发现最新标签版本: {latest_tag}")
+                        
+                        # 尝试切换到最新标签
+                        checkout_result = subprocess.run(["git", "checkout", latest_tag], 
+                                                      cwd=self.comfyui_path, 
+                                                      capture_output=True, text=True,
+                                                      creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                        
+                        if checkout_result.returncode == 0:
+                            self.logger.info(f"成功切换到标签版本: {latest_tag}")
+                            return {"status": "success", "message": f"ComfyUI更新成功并切换到最新版本 {latest_tag} (从 {url})"}
+                        else:
+                            self.logger.warning(f"无法切换到标签版本: {checkout_result.stderr}")
+                    
+                    return {"status": "success", "message": f"ComfyUI更新成功 (从 {url})"}
+                else:
+                    self.logger.error(f"从 {url} 更新ComfyUI失败: {result.stderr}")
+                    # 尝试恢复stash
+                    stash_pop_result = subprocess.run(["git", "stash", "pop"], 
+                                                   cwd=self.comfyui_path, 
+                                                   capture_output=True, text=True,
+                                                   creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+            
+            # 所有源都失败
+            return {"status": "error", "message": "所有源更新失败，请检查网络连接"}
         except Exception as e:
             self.logger.error(f"更新ComfyUI异常: {str(e)}")
             return {"status": "error", "message": f"异常: {str(e)}"}
@@ -178,17 +244,41 @@ class ComfyUIManager:
             if not self.check_comfyui_installed():
                 return {"status": "error", "message": "ComfyUI未安装"}
             
-            # 尝试通过git获取版本信息
-            result = subprocess.run(["git", "rev-parse", "--short", "HEAD"], 
+            # 优先从comfyui_version.py文件读取版本信息
+            version_file = os.path.join(self.comfyui_path, "comfyui_version.py")
+            if os.path.exists(version_file):
+                try:
+                    with open(version_file, "r", encoding="utf-8") as f:
+                        content = f.read()
+                        import re
+                        match = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", content)
+                        if match:
+                            version = match.group(1)
+                            return {"status": "success", "version": version}
+                except Exception as e:
+                    self.logger.error(f"读取版本文件失败: {e}")
+            
+            # 尝试通过git获取最新标签版本号
+            result = subprocess.run(["git", "describe", "--tags", "--abbrev=0"], 
                                   cwd=self.comfyui_path, 
                                   capture_output=True, text=True,
                                   creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
             
             if result.returncode == 0:
-                commit_hash = result.stdout.strip()
-                return {"status": "success", "version": commit_hash}
+                version = result.stdout.strip()
+                return {"status": "success", "version": version}
             else:
-                return {"status": "error", "message": "无法获取版本信息"}
+                # 如果无法获取标签，回退到获取提交哈希值
+                result = subprocess.run(["git", "rev-parse", "--short", "HEAD"], 
+                                      cwd=self.comfyui_path, 
+                                      capture_output=True, text=True,
+                                      creationflags=subprocess.CREATE_NO_WINDOW if self.system == 'Windows' else 0)
+                
+                if result.returncode == 0:
+                    commit_hash = result.stdout.strip()
+                    return {"status": "success", "version": commit_hash}
+                else:
+                    return {"status": "error", "message": "无法获取版本信息"}
         except Exception as e:
             self.logger.error(f"获取ComfyUI版本异常: {str(e)}")
             return {"status": "error", "message": f"异常: {str(e)}"}

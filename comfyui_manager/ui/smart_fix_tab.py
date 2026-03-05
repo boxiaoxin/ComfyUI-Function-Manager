@@ -467,30 +467,84 @@ class SmartFixThread(QThread):
             if not git_path:
                 raise Exception("未找到Git可执行文件")
             
-            # 执行git pull命令
-            pull_command = [git_path, "pull"]
-            self.update_log.emit(f"执行升级命令: {' '.join(pull_command)}")
+            # 尝试从不同的远程仓库拉取最新版本
+            repo_urls = [
+                "https://github.com/comfyanonymous/ComfyUI.git",
+                "https://gitee.com/ComfyUI/ComfyUI.git"  # Gitee镜像
+            ]
             
-            process = subprocess.Popen(
-                pull_command,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                text=True,
-                bufsize=1,
-                cwd=comfyui_path,
-                creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
-            )
+            pull_success = False
+            for url in repo_urls:
+                # 先设置远程仓库
+                self.update_log.emit(f"设置远程仓库为: {url}")
+                remote_command = [
+                    git_path, "remote", "set-url", "origin", url
+                ]
+                remote_process = subprocess.Popen(
+                    remote_command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    cwd=comfyui_path,
+                    creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+                )
+                remote_process.wait()
+                
+                # 执行git pull命令
+                pull_command = [git_path, "pull"]
+                self.update_log.emit(f"从 {url} 执行升级命令: {' '.join(pull_command)}")
+                
+                process = subprocess.Popen(
+                    pull_command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                    cwd=comfyui_path,
+                    creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+                )
+                
+                # 读取输出并更新日志
+                for line in iter(process.stdout.readline, ''):
+                    self.update_log.emit(line.strip())
+                
+                process.wait()
+                
+                if process.returncode == 0:
+                    self.update_log.emit(f"从 {url} 升级ComfyUI成功")
+                    
+                    # 尝试获取并切换到最新的标签版本
+                    tag_result = subprocess.run([git_path, "describe", "--tags", "--abbrev=0"], 
+                                               cwd=comfyui_path,
+                                               stdout=subprocess.PIPE,
+                                               stderr=subprocess.STDOUT,
+                                               text=True,
+                                               creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+                    
+                    if tag_result.returncode == 0:
+                        latest_tag = tag_result.stdout.strip()
+                        self.update_log.emit(f"发现最新标签版本: {latest_tag}")
+                        
+                        # 尝试切换到最新标签
+                        checkout_result = subprocess.run([git_path, "checkout", latest_tag], 
+                                                      cwd=comfyui_path,
+                                                      stdout=subprocess.PIPE,
+                                                      stderr=subprocess.STDOUT,
+                                                      text=True,
+                                                      creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+                        
+                        if checkout_result.returncode == 0:
+                            self.update_log.emit(f"成功切换到标签版本: {latest_tag}")
+                        else:
+                            self.update_log.emit(f"无法切换到标签版本: {checkout_result.stderr}")
+                    
+                    pull_success = True
+                    break
+                else:
+                    self.update_log.emit(f"从 {url} 升级失败，尝试其他源...")
             
-            # 读取输出并更新日志
-            for line in iter(process.stdout.readline, ''):
-                self.update_log.emit(line.strip())
-            
-            process.wait()
-            
-            if process.returncode != 0:
+            if not pull_success:
                 self.update_log.emit("升级失败，可能是网络问题，继续执行下一步")
-            else:
-                self.update_log.emit("ComfyUI升级成功")
         
         # 检查ComfyUI-Manager插件
         plugins_path = os.path.join(comfyui_path, "custom_nodes")
@@ -1026,8 +1080,16 @@ class SmartFixTab(QWidget):
             return
             
         try:
+            # 获取当前选择的路径
+            current_path = self.path_edit.text().strip()
+            if not current_path:
+                from PyQt5.QtWidgets import QMessageBox
+                QMessageBox.warning(self, lang_manager.get("warning"), lang_manager.get("select_path"))
+                self.logger.info("未选择安装路径")
+                return
+            
             # 检查路径是否有虚拟环境
-            if not self._check_has_virtualenv():
+            if not self._check_has_virtualenv(current_path):
                 from PyQt5.QtWidgets import QMessageBox
                 QMessageBox.warning(self, lang_manager.get("warning"), lang_manager.get("no_virtualenv_warning"))
                 self.logger.info(lang_manager.get("virtualenv_check_failed"))
@@ -1046,7 +1108,7 @@ class SmartFixTab(QWidget):
                 self.installation_thread.wait()
             
             # 创建并启动修复线程
-            self.installation_thread = SmartFixThread(self.install_path, fix_type)
+            self.installation_thread = SmartFixThread(current_path, fix_type)
             self.installation_thread.update_progress.connect(self.update_progress)
             self.installation_thread.update_log.connect(self.update_log)
             self.installation_thread.installation_finished.connect(self.installation_finished)
@@ -1057,12 +1119,14 @@ class SmartFixTab(QWidget):
             self._enable_buttons()
             self._reset_progress()
     
-    def _check_has_virtualenv(self):
+    def _check_has_virtualenv(self, path=None):
         """检查路径是否有虚拟环境"""
         try:
             import os
+            # 使用传入的路径或当前路径
+            check_path = path if path else self.install_path
             # 虚拟环境路径
-            install_dir = os.path.dirname(self.install_path) if os.path.dirname(self.install_path) else self.install_path
+            install_dir = os.path.dirname(check_path) if os.path.dirname(check_path) else check_path
             venv_path = os.path.join(install_dir, "ComfyUI_venv")
             # 检查虚拟环境是否存在且有效
             venv_python = os.path.join(venv_path, "Scripts", "python.exe") if os.name == "nt" else os.path.join(venv_path, "bin", "python")

@@ -452,7 +452,96 @@ class InstallComfyUIThread(QThread):
                 
                 self.update_progress.emit(60, "ComfyUI仓库克隆成功")
             else:
-                self.update_progress.emit(60, "ComfyUI已存在，跳过克隆")
+                # ComfyUI已存在，拉取最新版本
+                self.update_progress.emit(40, "ComfyUI已存在，拉取最新版本...")
+                import subprocess
+                git_path = embedded_tools.get_git_path()
+                if not git_path:
+                    raise Exception("未找到Git可执行文件")
+                
+                # 尝试从不同的远程仓库拉取最新版本
+                repo_urls = [
+                    "https://github.com/comfyanonymous/ComfyUI.git",
+                    "https://gitee.com/ComfyUI/ComfyUI.git"  # Gitee镜像
+                ]
+                
+                pull_success = False
+                for url in repo_urls:
+                    # 先设置远程仓库
+                    self.update_log.emit(f"设置远程仓库为: {url}")
+                    remote_command = [
+                        git_path, "remote", "set-url", "origin", url
+                    ]
+                    remote_process = subprocess.Popen(
+                        remote_command,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                        cwd=comfyui_path,
+                        creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+                    )
+                    remote_process.wait()
+                    
+                    # 拉取最新更改
+                    pull_command = [
+                        git_path, "pull"
+                    ]
+                    self.update_log.emit(f"从 {url} 拉取最新版本...")
+                    self.update_log.emit(f"执行拉取命令: {' '.join(pull_command)}")
+                    
+                    process = subprocess.Popen(
+                        pull_command,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                        bufsize=1,
+                        cwd=comfyui_path,
+                        creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0
+                    )
+                    
+                    # 读取输出并更新进度
+                    for line in iter(process.stdout.readline, ''):
+                        self.update_log.emit(line.strip())
+                    
+                    process.wait()
+                    
+                    if process.returncode == 0:
+                        self.update_log.emit(f"成功从 {url} 拉取ComfyUI最新版本")
+                        
+                        # 尝试获取并切换到最新的标签版本
+                        tag_result = subprocess.run([git_path, "describe", "--tags", "--abbrev=0"], 
+                                                   cwd=comfyui_path,
+                                                   stdout=subprocess.PIPE,
+                                                   stderr=subprocess.STDOUT,
+                                                   text=True,
+                                                   creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+                        
+                        if tag_result.returncode == 0:
+                            latest_tag = tag_result.stdout.strip()
+                            self.update_log.emit(f"发现最新标签版本: {latest_tag}")
+                            
+                            # 尝试切换到最新标签
+                            checkout_result = subprocess.run([git_path, "checkout", latest_tag], 
+                                                          cwd=comfyui_path,
+                                                          stdout=subprocess.PIPE,
+                                                          stderr=subprocess.STDOUT,
+                                                          text=True,
+                                                          creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+                            
+                            if checkout_result.returncode == 0:
+                                self.update_log.emit(f"成功切换到标签版本: {latest_tag}")
+                            else:
+                                self.update_log.emit(f"无法切换到标签版本: {checkout_result.stderr}")
+                        
+                        pull_success = True
+                        break
+                    else:
+                        self.update_log.emit(f"从 {url} 拉取失败，尝试其他源...")
+                
+                if not pull_success:
+                    self.update_log.emit("拉取最新版本失败，继续使用当前版本")
+                
+                self.update_progress.emit(60, "ComfyUI更新完成")
             
             # 安装ComfyUI依赖
             self.update_progress.emit(70, "安装ComfyUI依赖...")
@@ -1170,7 +1259,98 @@ class FullInstallThread(QThread):
             if not clone_success:
                 raise Exception("克隆ComfyUI仓库失败，请检查网络连接后重试")
         else:
-            self.update_log.emit("ComfyUI已存在，跳过克隆")
+            # ComfyUI已存在，拉取最新版本
+            self.update_log.emit("ComfyUI已存在，拉取最新版本...")
+            git_path = embedded_tools.get_git_path()
+            if not git_path:
+                raise Exception("未找到Git可执行文件")
+            
+            # 尝试从不同的远程仓库拉取最新版本
+            repo_urls = [
+                "https://github.com/comfyanonymous/ComfyUI.git",
+                "https://gitee.com/ComfyUI/ComfyUI.git"  # Gitee镜像
+            ]
+            
+            pull_success = False
+            for url in repo_urls:
+                # 先设置远程仓库
+                self.update_log.emit(f"设置远程仓库为: {url}")
+                remote_command = [
+                    git_path, "remote", "set-url", "origin", url
+                ]
+                remote_process = subprocess.Popen(
+                    remote_command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    cwd=comfyui_path
+                )
+                remote_process.wait()
+                
+                # 拉取最新更改
+                pull_command = [
+                    git_path, "pull"
+                ]
+                self.update_log.emit(f"从 {url} 拉取最新版本...")
+                self.update_log.emit(f"执行拉取命令: {' '.join(pull_command)}")
+                
+                # 重试机制
+                max_retries = 3
+                for retry in range(max_retries):
+                    self.update_log.emit(f"尝试第 {retry + 1}/{max_retries} 次")
+                    process = subprocess.Popen(
+                        pull_command,
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                        bufsize=1,
+                        cwd=comfyui_path
+                    )
+                    
+                    # 读取输出并更新日志
+                    for line in iter(process.stdout.readline, ''):
+                        self.update_log.emit(line.strip())
+                    
+                    process.wait()
+                    
+                    if process.returncode == 0:
+                        self.update_log.emit(f"成功从 {url} 拉取ComfyUI最新版本")
+                        
+                        # 尝试获取并切换到最新的标签版本
+                        tag_result = subprocess.run([git_path, "describe", "--tags", "--abbrev=0"], 
+                                                   cwd=comfyui_path,
+                                                   stdout=subprocess.PIPE,
+                                                   stderr=subprocess.STDOUT,
+                                                   text=True)
+                        
+                        if tag_result.returncode == 0:
+                            latest_tag = tag_result.stdout.strip()
+                            self.update_log.emit(f"发现最新标签版本: {latest_tag}")
+                            
+                            # 尝试切换到最新标签
+                            checkout_result = subprocess.run([git_path, "checkout", latest_tag], 
+                                                          cwd=comfyui_path,
+                                                          stdout=subprocess.PIPE,
+                                                          stderr=subprocess.STDOUT,
+                                                          text=True)
+                            
+                            if checkout_result.returncode == 0:
+                                self.update_log.emit(f"成功切换到标签版本: {latest_tag}")
+                            else:
+                                self.update_log.emit(f"无法切换到标签版本: {checkout_result.stderr}")
+                        
+                        pull_success = True
+                        break
+                    else:
+                        self.update_log.emit(f"从 {url} 拉取失败，正在重试...")
+                        import time
+                        time.sleep(2)  # 等待2秒后重试
+                
+                if pull_success:
+                    break
+            
+            if not pull_success:
+                self.update_log.emit("拉取最新版本失败，继续使用当前版本")
         
         # 安装ComfyUI依赖
         self.update_log.emit("安装ComfyUI依赖...")
