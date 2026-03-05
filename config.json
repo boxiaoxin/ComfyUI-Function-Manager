@@ -1,0 +1,18 @@
+{
+  "services_running": true,
+  "last_tab": "system",
+  "window_position": [
+    100,
+    100
+  ],
+  "window_size": [
+    960,
+    640
+  ],
+  "venv_path": "E:/venv",
+  "install_path": "E:/",
+  "auto_start": true,
+  "theme": 1,
+  "language": "简体中文",
+  "first_run": false
+}
