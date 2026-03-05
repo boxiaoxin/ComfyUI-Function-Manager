@@ -1,0 +1,553 @@
+import random
+import time
+from collections import OrderedDict
+
+# ------------------------------------------------------------------------------- #
+
+
+class StealthMode:
+    """
+    Stealth mode implementation for avoiding bot detection
+    """
+
+    def __init__(self, cloudscraper, min_delay=0.5, max_delay=2.0,
+                 human_like_delays=True, randomize_headers=True, browser_quirks=True,
+                 simulate_viewport=True, behavioral_patterns=True):
+
+        self.cloudscraper = cloudscraper
+        self.request_count = 0
+        self.last_request_time = 0
+        self.session_start = time.time()
+
+        # Basic config
+        self.min_delay = min_delay
+        self.max_delay = max_delay
+        self.human_like_delays = human_like_delays
+        self.randomize_headers = randomize_headers
+        self.browser_quirks = browser_quirks
+        self.simulate_viewport = simulate_viewport
+        self.behavioral_patterns = behavioral_patterns
+
+        # Session tracking
+        self.reading_wpm = random.uniform(200, 400)
+        self.visit_times = []
+
+        # Screen setup - pick common resolutions
+        resolutions = [(1920, 1080), (1366, 768), (1536, 864), (1440, 900), (1280, 720)]
+        self.screen_w, self.screen_h = random.choice(resolutions)
+        self.viewport_w = self.screen_w - random.randint(0, 100)
+        self.viewport_h = self.screen_h - random.randint(100, 200)
+
+        # Browser header patterns - copied from real browsers
+        self.browser_headers = {
+            'chrome': {
+                'order': ['Host', 'Connection', 'sec-ch-ua', 'sec-ch-ua-mobile', 'sec-ch-ua-platform',
+                          'User-Agent', 'Accept', 'Sec-Fetch-Site', 'Sec-Fetch-Mode', 'Sec-Fetch-User',
+                          'Sec-Fetch-Dest', 'Referer', 'Accept-Encoding', 'Accept-Language', 'Cookie'],
+                'defaults': {
+                    'sec-ch-ua': '"Google Chrome";v="120", "Not_A Brand";v="8", "Chromium";v="120"',
+                    'sec-ch-ua-mobile': '?0',
+                    'sec-ch-ua-platform': '"Windows"',
+                    'Sec-Fetch-Site': 'none',
+                    'Sec-Fetch-Mode': 'navigate',
+                    'Sec-Fetch-User': '?1',
+                    'Sec-Fetch-Dest': 'document',
+                    'Accept-Language': 'en-US,en;q=0.9'
+                }
+            },
+            'firefox': {
+                'order': ['Host', 'User-Agent', 'Accept', 'Accept-Language', 'Accept-Encoding',
+                          'Connection', 'Upgrade-Insecure-Requests', 'Referer', 'Cookie'],
+                'defaults': {
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5',
+                    'Upgrade-Insecure-Requests': '1',
+                    'Connection': 'keep-alive'
+                }
+            }
+        }
+
+    # ------------------------------------------------------------------------------- #
+
+    def apply_stealth_techniques(self, method, url, skip_sleep=False, **kwargs):
+        """Apply stealth stuff to make requests look human"""
+
+        # Wait a bit between requests with adaptive timing
+        if self.human_like_delays and not skip_sleep:
+            self._wait_like_human(url)
+
+        # Add screen size info
+        if self.simulate_viewport:
+            kwargs = self._add_screen_info(kwargs)
+
+        # Mix up headers
+        if self.randomize_headers:
+            kwargs = self._randomize_headers(kwargs)
+
+        # Make headers look like real browser
+        if self.browser_quirks:
+            kwargs = self._fix_header_order(kwargs)
+
+        # Add some behavioral stuff
+        if self.behavioral_patterns:
+            kwargs = self._add_behavior_headers(method, url, kwargs)
+
+        # Add enhanced stealth features
+        kwargs = self.simulate_mouse_movement(kwargs)
+        kwargs = self.add_fingerprint_resistance(kwargs)
+
+        # Keep track of requests
+        self.request_count += 1
+        self.last_request_time = time.time()
+        self.visit_times.append(time.time())
+
+        return kwargs
+
+    # ------------------------------------------------------------------------------- #
+
+    def _wait_like_human(self, url=None):
+        """Wait between requests like a real person would"""
+        if self.request_count == 0:
+            return  # First request, no delay
+
+        # Basic random delay
+        delay = random.uniform(self.min_delay, self.max_delay)
+
+        # Sometimes people read stuff (reduced delay for speed)
+        if random.random() < 0.15:  # Reduced from 30%
+            delay += random.uniform(0.5, 2)
+
+        # Sometimes people get distracted (reduced delay for speed)
+        if random.random() < 0.02:  # Reduced from 5%
+            delay += random.uniform(2, 5)
+
+        # Same domain = faster (people know where stuff is)
+        if url and hasattr(self, '_last_domain'):
+            from urllib.parse import urlparse
+            domain = urlparse(url).netloc
+            if domain == self._last_domain:
+                delay *= 0.7
+            self._last_domain = domain
+        elif url:
+            from urllib.parse import urlparse
+            self._last_domain = urlparse(url).netloc
+
+        # Get faster over time (familiarity)
+        session_time = time.time() - self.session_start
+        if session_time > 300:  # 5 minutes
+            speed_up = min(0.2, (session_time - 300) / 3600)
+            delay *= (1 - speed_up)
+
+        # Don't wait forever
+        delay = min(delay, 10.0)  # Reduced from 45s
+
+        if delay >= 0.1:
+            time.sleep(delay)
+
+    # ------------------------------------------------------------------------------- #
+
+    # ------------------------------------------------------------------------------- #
+
+    def _add_screen_info(self, kwargs):
+        """Add screen size and viewport info"""
+        headers = kwargs.get('headers', {})
+
+        # Viewport size
+        headers['Viewport-Width'] = str(self.viewport_w)
+        headers['Viewport-Height'] = str(self.viewport_h)
+
+        # Screen size (sometimes)
+        if random.random() < 0.5:
+            headers['Screen-Width'] = str(self.screen_w)
+            headers['Screen-Height'] = str(self.screen_h)
+
+        # Pixel ratio
+        ratios = [1.0, 1.25, 1.5, 2.0]
+        headers['Device-Pixel-Ratio'] = str(random.choice(ratios))
+
+        # Timezone
+        timezones = [-480, -420, -360, -300, -240, -180, 0, 60, 120, 180, 240, 300, 360, 480, 540]
+        headers['Timezone-Offset'] = str(random.choice(timezones))
+
+        kwargs['headers'] = headers
+        return kwargs
+
+    # ------------------------------------------------------------------------------- #
+
+    def _add_behavior_headers(self, method, url, kwargs):
+        """Add some behavioral stuff to headers"""
+        headers = kwargs.get('headers', {})
+
+        # How long on previous page
+        if len(self.visit_times) > 1:
+            time_on_page = self.visit_times[-1] - self.visit_times[-2]
+            if time_on_page > 0:
+                headers['X-Focus-Time'] = str(int(time_on_page * 1000))
+
+        # POST requests = forms
+        if method.upper() == 'POST':
+            form_time = random.uniform(5, 30)
+            headers['X-Form-Time'] = str(int(form_time * 1000))
+
+            if 'data' in kwargs or 'json' in kwargs:
+                typing_time = random.uniform(0.1, 0.3) * 50
+                headers['X-Typing-Time'] = str(int(typing_time * 1000))
+
+        # How many pages visited
+        headers['X-Session-Depth'] = str(len(self.visit_times))
+
+        # Tab focused?
+        focus_chance = max(0.7, 1.0 - (len(self.visit_times) * 0.05))
+        headers['X-Tab-Focus'] = 'true' if random.random() < focus_chance else 'false'
+
+        # Different page types
+        if url:
+            from urllib.parse import urlparse
+            path = urlparse(url).path.lower()
+
+            if any(word in path for word in ['login', 'signin', 'auth']):
+                headers['X-Page-Type'] = 'auth'
+            elif any(word in path for word in ['search', 'query']):
+                headers['X-Page-Type'] = 'search'
+            elif any(word in path for word in ['product', 'item', 'detail']):
+                headers['X-Page-Type'] = 'product'
+
+        kwargs['headers'] = headers
+        return kwargs
+
+    # ------------------------------------------------------------------------------- #
+
+    def _randomize_headers(self, kwargs):
+        """Mix up headers so they look different each time"""
+        headers = kwargs.get('headers', {})
+
+        # Accept header variations
+        if 'Accept' not in headers:
+            accept_options = [
+                'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8'
+            ]
+            headers['Accept'] = random.choice(accept_options)
+
+        # Language stuff
+        if 'Accept-Language' not in headers:
+            langs = [
+                'en-US,en;q=0.9',
+                'en-US,en;q=0.8',
+                'en-GB,en;q=0.9,en-US;q=0.8',
+                'en-CA,en;q=0.9,en-US;q=0.8',
+                'en-AU,en;q=0.9,en-US;q=0.8'
+            ]
+            headers['Accept-Language'] = random.choice(langs)
+
+        # Encoding
+        if 'Accept-Encoding' not in headers:
+            encodings = ['gzip, deflate, br', 'gzip, deflate', 'gzip, deflate, br, zstd']
+            headers['Accept-Encoding'] = random.choice(encodings)
+
+        # Do Not Track (some people have this)
+        if random.random() < 0.4:
+            headers['DNT'] = '1'
+
+        # Cache stuff
+        if random.random() < 0.3:
+            cache_opts = ['max-age=0', 'no-cache', 'max-age=0, must-revalidate']
+            headers['Cache-Control'] = random.choice(cache_opts)
+
+        if random.random() < 0.2:
+            headers['Pragma'] = 'no-cache'
+
+        # Connection type
+        if 'Connection' not in headers:
+            headers['Connection'] = random.choice(['keep-alive', 'close'])
+
+        kwargs['headers'] = headers
+        return kwargs
+
+    # ------------------------------------------------------------------------------- #
+
+    def _fix_header_order(self, kwargs):
+        """Put headers in the right order like real browsers do"""
+        user_agent = kwargs.get('headers', {}).get('User-Agent', '')
+
+        # Figure out browser type
+        if 'Firefox/' in user_agent:
+            browser = 'firefox'
+        else:
+            browser = 'chrome'  # default
+
+        headers = kwargs.get('headers', {})
+
+        # Add browser-specific headers
+        for header, value in self.browser_headers[browser]['defaults'].items():
+            if header not in headers:
+                headers[header] = value
+
+        # Put headers in correct order
+        if headers:
+            ordered = OrderedDict()
+            # Add in browser order first
+            for header in self.browser_headers[browser]['order']:
+                if header in headers:
+                    ordered[header] = headers[header]
+            # Add any leftover headers
+            for header, value in headers.items():
+                if header not in ordered:
+                    ordered[header] = value
+
+            kwargs['headers'] = ordered
+
+        return kwargs
+
+    # ------------------------------------------------------------------------------- #
+
+    def set_delay_range(self, min_delay, max_delay):
+        """Change delay settings"""
+        self.min_delay = min_delay
+        self.max_delay = max_delay
+
+    def calc_reading_time(self, content_length, content_type='text'):
+        """How long would it take to read this much text?"""
+        # Average reading speed: 200-250 words per minute
+        # Average word is ~5 chars, so ~1000-1250 chars per minute
+        # = ~16-21 chars per second
+        
+        # Adjust based on content type
+        if content_type in ['image', 'video']:
+            # Images/videos: Faster scan (1KB in 0.5s)
+            base_rate = 2000  # chars per second
+        elif content_type in ['json', 'api']:
+            # API responses: No reading time
+            return 0
+        else:
+            # Text content: Normal reading (1KB in ~1s)
+            base_rate = 1000
+        
+        reading_time = content_length / base_rate
+        # Cap at reasonable max (30 seconds)
+        reading_time *= random.uniform(0.8, 1.2) # add some variation
+        return max(1.0, min(reading_time, 30.0))
+
+    def get_adaptive_delay(self, url=None, content_type=None):
+        """
+        Calculate adaptive delay based on content type and browsing patterns
+        """
+        base_delay = random.uniform(self.min_delay, self.max_delay)
+
+        # Adjust based on content type
+        if content_type:
+            if 'json' in content_type or 'api' in str(url):
+                # API calls are typically faster
+                base_delay *= 0.5
+            elif 'image' in content_type:
+                # Images load quickly
+                base_delay *= 0.3
+            elif 'text/html' in content_type:
+                # HTML pages take time to read
+                base_delay *= 1.2
+
+        # Adjust based on time of day (simulate human activity patterns)
+        import datetime
+        current_hour = datetime.datetime.now().hour
+        if 9 <= current_hour <= 17:  # Business hours
+            base_delay *= random.uniform(0.8, 1.0)  # Slightly faster
+        elif 22 <= current_hour or current_hour <= 6:  # Night time
+            base_delay *= random.uniform(1.2, 1.8)  # Slower, tired user
+
+        # Adjust based on request frequency
+        if len(self.visit_times) > 1:
+            recent_requests = [t for t in self.visit_times if time.time() - t < 60]
+            if len(recent_requests) > 10:  # High frequency
+                base_delay *= random.uniform(1.5, 2.0)  # Slow down
+
+        return min(base_delay, 10.0)  # Cap reduced from 45s
+
+    def simulate_mouse_movement(self, kwargs):
+        """
+        Add headers that simulate mouse movement and interaction
+        """
+        headers = kwargs.get('headers', {})
+
+        # Simulate viewport focus
+        if random.random() < 0.3:
+            headers['X-Viewport-Focus'] = 'true'
+
+        # Simulate scroll position
+        if random.random() < 0.4:
+            scroll_y = random.randint(0, 2000)
+            headers['X-Scroll-Position'] = str(scroll_y)
+
+        # Simulate mouse position (relative to viewport)
+        if random.random() < 0.2:
+            mouse_x = random.randint(0, self.viewport_w)
+            mouse_y = random.randint(0, self.viewport_h)
+            headers['X-Mouse-Position'] = f'{mouse_x},{mouse_y}'
+
+        kwargs['headers'] = headers
+        return kwargs
+
+    def add_fingerprint_resistance(self, kwargs):
+        """
+        Add headers and techniques to resist browser fingerprinting
+        """
+        headers = kwargs.get('headers', {})
+
+        # Randomize Accept header slightly
+        if 'Accept' in headers and random.random() < 0.1:
+            accept_parts = headers['Accept'].split(',')
+            if len(accept_parts) > 1:
+                # Slightly shuffle quality values
+                for i, part in enumerate(accept_parts):
+                    if 'q=' in part and random.random() < 0.3:
+                        q_val = random.uniform(0.8, 0.9)
+                        accept_parts[i] = part.split('q=')[0] + f'q={q_val:.1f}'
+                headers['Accept'] = ','.join(accept_parts)
+
+        # Add canvas fingerprint resistance
+        if random.random() < 0.1:
+            headers['X-Canvas-Fingerprint'] = 'blocked'
+
+        # Add WebGL fingerprint resistance
+        if random.random() < 0.1:
+            headers['X-WebGL-Fingerprint'] = 'masked'
+
+        # Randomize connection type
+        connection_types = ['wifi', 'cellular', 'ethernet', 'unknown']
+        if random.random() < 0.2:
+            headers['X-Connection-Type'] = random.choice(connection_types)
+
+        kwargs['headers'] = headers
+        return kwargs
+
+
+
+    def get_human_timing_signature(self):
+        """Get stats about this session"""
+        now = time.time()
+        duration = now - self.session_start
+
+        return {
+            'session_duration': duration,
+            'request_count': self.request_count,
+            'avg_request_interval': duration / max(1, self.request_count),
+            'reading_speed': self.reading_wpm,
+            'viewport_size': f"{self.viewport_w}x{self.viewport_h}",
+            'screen_size': f"{self.screen_w}x{self.screen_h}"
+        }
+
+    def reset_session(self):
+        """Start fresh session"""
+        self.session_start = time.time()
+        self.request_count = 0
+        self.visit_times = []
+
+        # New random characteristics
+        self.reading_wpm = random.uniform(200, 400)
+
+        # Sometimes change screen size
+        if random.random() < 0.1:
+            resolutions = [(1920, 1080), (1366, 768), (1536, 864), (1440, 900), (1280, 720)]
+            self.screen_w, self.screen_h = random.choice(resolutions)
+            self.viewport_w = self.screen_w - random.randint(0, 100)
+            self.viewport_h = self.screen_h - random.randint(100, 200)
+
+    def enable_maximum_stealth(self):
+        """Enable all stealth features for high-security sites"""
+        self.human_like_delays = True
+        self.randomize_headers = True
+        self.browser_quirks = True
+        self.simulate_viewport = True
+        self.behavioral_patterns = True
+        self.min_delay = max(self.min_delay, 1.0)
+        self.max_delay = max(self.max_delay, 5.0)
+
+    def get_advanced_browser_args(self) -> list:
+        """
+        Get advanced Chromium arguments for enhanced stealth.
+        Ported from advanced bypass techniques.
+        """
+        return [
+            "--disable-blink-features=AutomationControlled",
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+            "--disable-infobars",
+            "--window-position=0,0",
+            "--ignore-certifcate-errors",
+            "--ignore-certifcate-errors-spki-list",
+            "--disable-background-networking",
+            "--disable-background-timer-throttling",
+            "--disable-backgrounding-occluded-windows",
+            "--disable-breakpad",
+            "--disable-client-side-phishing-detection",
+            "--disable-component-update",
+            "--disable-default-apps",
+            "--disable-dev-shm-usage",
+            "--disable-extensions",
+            "--disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate,HttpsUpgrades,PaintHolding,ThirdPartyStoragePartitioning,LensOverlay,PlzDedicatedWorker",
+            "--disable-hang-monitor",
+            "--disable-ipc-flooding-protection",
+            "--disable-popup-blocking",
+            "--disable-prompt-on-repost",
+            "--disable-renderer-backgrounding",
+            "--disable-sync",
+            "--force-color-profile=srgb",
+            "--metrics-recording-only",
+            "--no-first-run",
+            "--password-store=basic",
+            "--use-mock-keychain",
+            "--export-tagged-pdf",
+            "--disable-search-engine-choice-screen",
+            "--unsafely-disable-devtools-self-xss-warnings"
+        ]
+
+    def get_automation_bypass_script(self) -> str:
+        """
+        Get JavaScript for bypassing automation detection.
+        Injects masks for navigator.webdriver and other common leak points.
+        """
+        return """
+        (function() {
+            // Mask navigator.webdriver
+            Object.defineProperty(navigator, 'webdriver', {
+                get: () => undefined
+            });
+
+            // Mask chrome property
+            window.chrome = {
+                runtime: {},
+                loadTimes: function() {},
+                csi: function() {},
+                app: {}
+            };
+
+            // Mask permissions
+            const originalQuery = window.navigator.permissions.query;
+            window.navigator.permissions.query = (parameters) => (
+                parameters.name === 'notifications' ?
+                    Promise.resolve({ state: Notification.permission }) :
+                    originalQuery(parameters)
+            );
+
+            // Mask plugins
+            Object.defineProperty(navigator, 'plugins', {
+                get: () => [1, 2, 3, 4, 5]
+            });
+
+            // Mask languages
+            Object.defineProperty(navigator, 'languages', {
+                get: () => ['en-US', 'en']
+            });
+
+            // Disable Console API to avoid certain leaks
+            const noOp = () => {};
+            // console.log = noOp;
+            // console.debug = noOp;
+            // console.info = noOp;
+            // console.warn = noOp;
+            // console.error = noOp;
+            
+            // Note: We leave console enabled for now but can disable it if needed for max stealth
+        })();
+        """

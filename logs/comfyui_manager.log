@@ -137,3 +137,266 @@ Python版本: 3.12.10
 2026-03-05 16:13:55,732 - ComfyUI_Manager - INFO - 启动日志: E:\ComfyUI_venv\Lib\site-packages\requests\__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.0.1)/charset_normalizer (3.4.4) doesn't match a supported version!
 2026-03-05 16:13:55,733 - ComfyUI_Manager - INFO - 启动日志: warnings.warn(
 2026-03-05 16:13:56,749 - ComfyUI_Manager - INFO - 关闭应用程序
+2026-03-05 19:27:36,435 - ComfyUI_Manager - INFO - 尝试加载配置文件: C:\Users\boxia\Documents\GitHub\ComfyUI-\config.json
+2026-03-05 19:27:36,435 - ComfyUI_Manager - INFO - 配置文件存在: C:\Users\boxia\Documents\GitHub\ComfyUI-\config.json
+2026-03-05 19:27:36,435 - ComfyUI_Manager - INFO - 成功加载配置文件: C:\Users\boxia\Documents\GitHub\ComfyUI-\config.json
+2026-03-05 19:27:36,435 - ComfyUI_Manager - INFO - 配置键: ['services_running', 'last_tab', 'window_position', 'window_size', 'venv_path', 'install_path', 'auto_start', 'theme', 'language', 'first_run']
+2026-03-05 19:27:36,520 - ComfyUI_Manager - INFO - 启动ComfyUI功能管理器
+2026-03-05 19:27:36,520 - ComfyUI_Manager - INFO - 创建主窗口
+2026-03-05 19:27:36,605 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:36,607 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:36,790 - ComfyUI_Manager - INFO - 自动运行已开启，准备启动ComfyUI
+2026-03-05 19:27:36,795 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-05 19:27:36,836 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-05 19:27:36,839 - ComfyUI_Manager - INFO - 切换到标签 system，索引 0
+2026-03-05 19:27:36,839 - ComfyUI_Manager - INFO - 切换到标签: system
+2026-03-05 19:27:36,840 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:36,841 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:36,844 - ComfyUI_Manager - INFO - 文件管理标签页UI已刷新
+2026-03-05 19:27:36,844 - ComfyUI_Manager - INFO - 一键启动标签页UI已刷新
+2026-03-05 19:27:36,846 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-05 19:27:36,847 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:36,849 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:36,849 - ComfyUI_Manager - INFO - 自动运行已启用，导航到一键启动界面
+2026-03-05 19:27:36,850 - ComfyUI_Manager - INFO - 切换到标签 one_click_start，索引 4
+2026-03-05 19:27:36,850 - ComfyUI_Manager - INFO - 切换到标签: one_click_start
+2026-03-05 19:27:36,851 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:36,853 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:36,854 - ComfyUI_Manager - INFO - 文件管理标签页UI已刷新
+2026-03-05 19:27:36,855 - ComfyUI_Manager - INFO - 一键启动标签页UI已刷新
+2026-03-05 19:27:36,857 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-05 19:27:36,858 - ComfyUI_Manager - INFO - 一键启动标签页UI已刷新
+2026-03-05 19:27:37,790 - ComfyUI_Manager - INFO - 点击有效，更新 start_comfyui 按钮的点击时间为 1772710057.79032
+2026-03-05 19:27:37,790 - ComfyUI_Manager - INFO - 开始启动ComfyUI
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 路径 E:/ 是否有虚拟环境: True
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 更新路径为: E:/
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 更新标签页 one_click_install 的路径为: E:/
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 更新路径为: E:/
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 更新标签页 smart_fix 的路径为: E:/
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 点击有效，更新 refresh_files 按钮的点击时间为 1772710057.9493744
+2026-03-05 19:27:37,949 - ComfyUI_Manager - INFO - 刷新文件列表
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-18'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1043234536-1176194750-1849758253-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1000'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1002'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1261331127-700517662-3826777505-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1301886505-574202194-2905125902-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1467945718-526431171-3719646151-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1710498730-1820580297-934660749-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2007175306-1360877697-3547198071-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2047361059-2047811774-2048649695-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2074970982-1831108675-3060783828-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2268627617-2275173072-430061915-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2301410967-2086237546-2679281128-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-258841586-2202930209-1860775735-1002'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2853664267-973789574-2810159930-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2940698016-3911471069-436013525-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3141791215-2335743030-3240978817-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3517619521-2286527229-769687489-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3701176227-976502023-3306709531-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3741322516-2429759667-2991714087-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-389943751-2880146058-2474947868-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-4189234451-2894513614-2806091984-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-711312797-146043543-2050895310-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-956049280-4172312271-3640238713-1001'
+2026-03-05 19:27:37,949 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-964732972-219930994-3371780385-1001'
+2026-03-05 19:27:37,981 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/System Volume Information'
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 更新路径为: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 更新标签页 file_management 的路径为: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 更新路径为: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 更新标签页 one_click_start 的路径为: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 通知主窗口更新所有标签页路径为: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 创建启动线程，安装路径: E:/
+2026-03-05 19:27:38,013 - ComfyUI_Manager - INFO - 启动线程已启动
+2026-03-05 19:27:38,029 - ComfyUI_Manager - INFO - 启动进度: 0% - 开始启动ComfyUI...
+2026-03-05 19:27:38,029 - ComfyUI_Manager - INFO - 启动日志: 虚拟环境路径: E:/ComfyUI_venv
+2026-03-05 19:27:38,029 - ComfyUI_Manager - INFO - 启动日志: 使用虚拟环境Python: E:/ComfyUI_venv\Scripts\pythonw.exe
+2026-03-05 19:27:38,029 - ComfyUI_Manager - INFO - 启动日志: ComfyUI安装路径: E:/ComfyUI
+2026-03-05 19:27:38,045 - ComfyUI_Manager - INFO - 启动进度: 40% - 启动ComfyUI...
+2026-03-05 19:27:38,045 - ComfyUI_Manager - INFO - 启动进度: 45% - 检查端口8188是否被占用...
+2026-03-05 19:27:39,039 - ComfyUI_Manager - INFO - 启动进度: 60% - 正在启动ComfyUI进程...
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-18'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1043234536-1176194750-1849758253-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1000'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1002'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1261331127-700517662-3826777505-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1301886505-574202194-2905125902-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1467945718-526431171-3719646151-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1710498730-1820580297-934660749-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2007175306-1360877697-3547198071-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2047361059-2047811774-2048649695-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2074970982-1831108675-3060783828-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2268627617-2275173072-430061915-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2301410967-2086237546-2679281128-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-258841586-2202930209-1860775735-1002'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2853664267-973789574-2810159930-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2940698016-3911471069-436013525-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3141791215-2335743030-3240978817-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3517619521-2286527229-769687489-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3701176227-976502023-3306709531-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3741322516-2429759667-2991714087-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-389943751-2880146058-2474947868-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-4189234451-2894513614-2806091984-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-711312797-146043543-2050895310-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-956049280-4172312271-3640238713-1001'
+2026-03-05 19:27:41,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-964732972-219930994-3371780385-1001'
+2026-03-05 19:27:41,810 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/System Volume Information'
+2026-03-05 19:27:41,826 - ComfyUI_Manager - INFO - 自动刷新文件列表: E:/
+2026-03-05 19:27:41,860 - ComfyUI_Manager - INFO - 启动日志: comfy-aimdo failed to load: Could not find module 'E:\ComfyUI_venv\Lib\site-packages\comfy_aimdo\aimdo.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+2026-03-05 19:27:41,860 - ComfyUI_Manager - INFO - 启动日志: NOTE: comfy-aimdo is currently only support for Nvidia GPUs
+2026-03-05 19:27:42,143 - ComfyUI_Manager - INFO - 启动日志: E:\ComfyUI_venv\Lib\site-packages\requests\__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (7.0.1)/charset_normalizer (3.4.4) doesn't match a supported version!
+2026-03-05 19:27:42,143 - ComfyUI_Manager - INFO - 启动日志: warnings.warn(
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: [START] Security scan
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: [DONE] Security scan
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ## ComfyUI-Manager: installing dependencies done.
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** ComfyUI startup time: 2026-03-05 19:27:46.709
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** Platform: Windows
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** Python version: 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** Python executable: E:\ComfyUI_venv\Scripts\pythonw.exe
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** ComfyUI Path: E:\ComfyUI
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** ComfyUI Base Folder Path: E:\ComfyUI
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** User directory: E:\ComfyUI\user
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** ComfyUI-Manager config path: E:\ComfyUI\user\__manager\config.ini
+2026-03-05 19:27:46,709 - ComfyUI_Manager - INFO - 启动日志: ** Log path: E:\ComfyUI\user\comfyui.log
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-18'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1043234536-1176194750-1849758253-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1000'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1002'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1261331127-700517662-3826777505-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1301886505-574202194-2905125902-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1467945718-526431171-3719646151-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1710498730-1820580297-934660749-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2007175306-1360877697-3547198071-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2047361059-2047811774-2048649695-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2074970982-1831108675-3060783828-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2268627617-2275173072-430061915-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2301410967-2086237546-2679281128-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-258841586-2202930209-1860775735-1002'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2853664267-973789574-2810159930-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2940698016-3911471069-436013525-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3141791215-2335743030-3240978817-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3517619521-2286527229-769687489-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3701176227-976502023-3306709531-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3741322516-2429759667-2991714087-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-389943751-2880146058-2474947868-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-4189234451-2894513614-2806091984-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-711312797-146043543-2050895310-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-956049280-4172312271-3640238713-1001'
+2026-03-05 19:27:46,773 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-964732972-219930994-3371780385-1001'
+2026-03-05 19:27:46,804 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/System Volume Information'
+2026-03-05 19:27:46,820 - ComfyUI_Manager - INFO - 自动刷新文件列表: E:/
+2026-03-05 19:27:47,738 - ComfyUI_Manager - INFO - 启动日志: 
+2026-03-05 19:27:47,738 - ComfyUI_Manager - INFO - 启动日志: Prestartup times for custom nodes:
+2026-03-05 19:27:47,738 - ComfyUI_Manager - INFO - 启动日志: 5.9 seconds: E:\ComfyUI\custom_nodes\ComfyUI-Manager
+2026-03-05 19:27:47,738 - ComfyUI_Manager - INFO - 启动日志: 
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-18'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1043234536-1176194750-1849758253-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1000'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1002'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1261331127-700517662-3826777505-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1301886505-574202194-2905125902-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1467945718-526431171-3719646151-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1710498730-1820580297-934660749-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2007175306-1360877697-3547198071-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2047361059-2047811774-2048649695-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2074970982-1831108675-3060783828-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2268627617-2275173072-430061915-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2301410967-2086237546-2679281128-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-258841586-2202930209-1860775735-1002'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2853664267-973789574-2810159930-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2940698016-3911471069-436013525-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3141791215-2335743030-3240978817-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3517619521-2286527229-769687489-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3701176227-976502023-3306709531-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3741322516-2429759667-2991714087-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-389943751-2880146058-2474947868-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-4189234451-2894513614-2806091984-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-711312797-146043543-2050895310-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-956049280-4172312271-3640238713-1001'
+2026-03-05 19:27:51,784 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-964732972-219930994-3371780385-1001'
+2026-03-05 19:27:51,815 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/System Volume Information'
+2026-03-05 19:27:51,836 - ComfyUI_Manager - INFO - 自动刷新文件列表: E:/
+2026-03-05 19:27:52,722 - ComfyUI_Manager - INFO - 点击有效，更新 stop_comfyui 按钮的点击时间为 1772710072.7225552
+2026-03-05 19:27:52,722 - ComfyUI_Manager - INFO - 开始停止ComfyUI
+2026-03-05 19:27:52,738 - ComfyUI_Manager - INFO - 启动日志: ComfyUI进程已停止
+2026-03-05 19:27:52,754 - ComfyUI_Manager - INFO - ComfyUI已停止
+2026-03-05 19:27:53,268 - ComfyUI_Manager - INFO - 点击有效，更新 toggle_auto_start 按钮的点击时间为 1772710073.2681408
+2026-03-05 19:27:53,268 - ComfyUI_Manager - INFO - 自动运行已关闭
+2026-03-05 19:27:54,754 - ComfyUI_Manager - INFO - 切换到标签 system，索引 0
+2026-03-05 19:27:54,769 - ComfyUI_Manager - INFO - 切换到标签: system
+2026-03-05 19:27:54,771 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:54,778 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:54,780 - ComfyUI_Manager - INFO - 文件管理标签页UI已刷新
+2026-03-05 19:27:54,780 - ComfyUI_Manager - INFO - 一键启动标签页UI已刷新
+2026-03-05 19:27:54,782 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-05 19:27:54,784 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-05 19:27:54,790 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-05 13:06:49
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-18'
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1043234536-1176194750-1849758253-1001'
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1000'
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1001'
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1074764930-3316282759-1051462994-1002'
+2026-03-05 19:27:56,778 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1261331127-700517662-3826777505-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1301886505-574202194-2905125902-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1467945718-526431171-3719646151-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-1710498730-1820580297-934660749-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2007175306-1360877697-3547198071-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2047361059-2047811774-2048649695-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2074970982-1831108675-3060783828-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2268627617-2275173072-430061915-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2301410967-2086237546-2679281128-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-258841586-2202930209-1860775735-1002'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2853664267-973789574-2810159930-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-2940698016-3911471069-436013525-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3141791215-2335743030-3240978817-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3517619521-2286527229-769687489-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3701176227-976502023-3306709531-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-3741322516-2429759667-2991714087-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-389943751-2880146058-2474947868-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-4189234451-2894513614-2806091984-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-711312797-146043543-2050895310-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-956049280-4172312271-3640238713-1001'
+2026-03-05 19:27:56,780 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/$RECYCLE.BIN\\S-1-5-21-964732972-219930994-3371780385-1001'
+2026-03-05 19:27:56,808 - ComfyUI_Manager - ERROR - 添加文件到树失败: [WinError 5] 拒绝访问。: 'E:/System Volume Information'
+2026-03-05 19:27:56,824 - ComfyUI_Manager - INFO - 自动刷新文件列表: E:/
+2026-03-05 19:27:58,798 - ComfyUI_Manager - INFO - 关闭应用程序

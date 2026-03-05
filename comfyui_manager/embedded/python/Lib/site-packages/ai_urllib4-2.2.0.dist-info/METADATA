@@ -1,0 +1,461 @@
+Metadata-Version: 2.4
+Name: ai-urllib4
+Version: 2.2.0
+Summary: A modern HTTP client for Python with HTTP/3, WebSocket extensions, and enhanced security features
+Home-page: https://github.com/zinzied/ai-urllib4
+Author: Zied Boughdir
+Author-email: Zied Boughdir <ziedboughdir@gmail.com>
+License-Expression: MIT
+Project-URL: Documentation, https://github.com/zinzied/urllib4
+Project-URL: Code, https://github.com/zinzied/urllib4
+Project-URL: Issue tracker, https://github.com/zinzied/urllib4/issues
+Keywords: urllib,httplib,threadsafe,filepost,http,https,ssl,pooling,http2,http3,quic,websocket,security
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Provides-Extra: brotli
+Requires-Dist: brotli>=1.0.9; platform_python_implementation == "CPython" and extra == "brotli"
+Requires-Dist: brotlicffi>=0.8.0; platform_python_implementation != "CPython" and extra == "brotli"
+Provides-Extra: zstd
+Requires-Dist: zstandard>=0.18.0; extra == "zstd"
+Provides-Extra: socks
+Requires-Dist: PySocks!=1.5.7,<2.0,>=1.5.6; extra == "socks"
+Provides-Extra: http2
+Requires-Dist: h2<5,>=4; extra == "http2"
+Provides-Extra: http3
+Requires-Dist: aioquic>=0.9.20; extra == "http3"
+Requires-Dist: ifaddr>=0.1.7; extra == "http3"
+Provides-Extra: async
+Requires-Dist: anyio>=3.0.0; extra == "async"
+Provides-Extra: websocket
+Requires-Dist: idna>=2.0.0; extra == "websocket"
+Requires-Dist: msgpack>=1.0.4; extra == "websocket"
+Requires-Dist: cbor2>=5.4.6; extra == "websocket"
+Provides-Extra: security
+Requires-Dist: cryptography>=38.0.0; extra == "security"
+Provides-Extra: all
+Requires-Dist: brotli>=1.0.9; platform_python_implementation == "CPython" and extra == "all"
+Requires-Dist: brotlicffi>=0.8.0; platform_python_implementation != "CPython" and extra == "all"
+Requires-Dist: zstandard>=0.18.0; extra == "all"
+Requires-Dist: PySocks!=1.5.7,<2.0,>=1.5.6; extra == "all"
+Requires-Dist: h2<5,>=4; extra == "all"
+Requires-Dist: aioquic>=0.9.20; extra == "all"
+Requires-Dist: ifaddr>=0.1.7; extra == "all"
+Requires-Dist: msgpack>=1.0.4; extra == "all"
+Requires-Dist: cbor2>=5.4.6; extra == "all"
+Requires-Dist: cryptography>=38.0.0; extra == "all"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+<h1 align="center">
+
+# urllib4: An Enhanced HTTP Client for Python
+
+</h1>
+
+<p align="center">
+  <a href="https://github.com/zinzied/ai-urllib4"><img alt="Project Status" src="https://img.shields.io/badge/status-production--ready-green" /></a>
+  <a href="https://github.com/zinzied/ai-urllib4"><img alt="Python Versions" src="https://img.shields.io/badge/python-3.7%2B-blue" /></a>
+  <a href="https://github.com/zinzied/ai-urllib4"><img alt="Development Stage" src="https://img.shields.io/badge/stage-stable-green" /></a>
+</p>
+
+ai-urllib4 is a modern HTTP client for Python that builds upon the foundation of urllib3 while adding enhancements for modern web applications. It provides a powerful yet user-friendly interface for making HTTP requests with advanced features.
+
+## Features
+
+urllib4 provides a comprehensive set of features for modern web applications:
+
+### ✅ Core Features:
+- Connection pooling and thread safety
+- Basic URL parsing and manipulation
+- HTTP header handling and collections
+- Multipart form data encoding
+- SSL/TLS utility functions
+- File upload functionality
+- HTTP/HTTPS request handling
+- Proxy support
+- Retry mechanisms
+- Redirect handling
+- Compression support
+
+### ✅ Advanced Features:
+- Enhanced HTTP/2 Support
+- WebSocket capabilities with extensions and subprotocols
+- Improved security features
+- HTTP/3 (QUIC) support with Multipath QUIC
+
+### ✅ AI Features:
+- Adaptive Headers & Request Optimization
+- Domain Memory (learns from success/failure)
+- Anomaly Detection & Smart Retries
+
+## Usage Example
+
+You can use urllib4 for your HTTP requests with a simple, intuitive API:
+
+```python3
+# Simple GET request
+>>> import ai_urllib4
+>>> resp = ai_urllib4.request("GET", "http://httpbin.org/robots.txt")
+>>> resp.status
+200
+>>> resp.data
+b"User-agent: *\nDisallow: /deny\n"
+
+# POST request with JSON data
+>>> import ai_urllib4
+>>> import json
+>>> data = {"name": "John", "age": 30}
+>>> resp = ai_urllib4.request(
+...     "POST",
+...     "http://httpbin.org/post",
+...     headers={"Content-Type": "application/json"},
+...     body=json.dumps(data).encode()
+... )
+>>> resp.status
+200
+```
+
+## Installation
+
+You can install urllib4 with pip:
+
+```bash
+$ pip install ai-urllib4
+```
+
+For additional features, you can install optional dependencies:
+
+```bash
+# For HTTP/3 support
+$ pip install ai-urllib4[http3]
+
+# For WebSocket subprotocols
+$ pip install ai-urllib4[websocket]
+
+# For all optional features
+$ pip install ai-urllib4[all]
+```
+
+Alternatively, you can install from source:
+
+```bash
+$ git clone https://github.com/zinzied/ai-urllib4.git
+$ cd ai-urllib4
+$ pip install -e .
+```
+
+## Development and Testing
+
+To set up a development environment:
+
+```bash
+$ git clone https://github.com/zinzied/ai-urllib4.git
+$ cd ai-urllib4
+$ pip install -e ".[dev]"
+```
+
+To run tests:
+
+```bash
+$ python -m pytest
+```
+
+Note that many tests are currently failing as the library is under active development.
+
+## Documentation
+
+Documentation is currently limited to code comments and this README. As the project matures, more comprehensive documentation will be developed.
+
+## Roadmap
+
+The following features are planned for future development:
+
+### HTTP/3 Enhancements
+
+- Connection migration for improved reliability
+- HTTP/3 priority management
+- WebTransport support
+
+### WebSocket Enhancements
+
+- Additional WebSocket extensions
+- WebSocket over HTTP/2
+
+### HTTP/2 Support
+
+```python
+import ai_urllib4
+from ai_urllib4.http2 import inject_into_urllib4, ConnectionProfile
+
+# Enable HTTP/2 support
+inject_into_urllib4()
+
+# Create a pool manager with a specific connection profile
+http = ai_urllib4.PoolManager(http2_profile=ConnectionProfile.HIGH_PERFORMANCE)
+
+# Make a request (automatically uses HTTP/2 if the server supports it)
+response = http.request("GET", "https://nghttp2.org")
+print(f"HTTP version: {response.version_string}")
+```
+
+### WebSocket Support
+
+```python
+from ai_urllib4.websocket import WebSocketConnection
+
+# Connect to a WebSocket server with compression and health monitoring
+ws = WebSocketConnection(
+    "wss://echo.websocket.org",
+    enable_compression=True,
+    compression_level=9,
+    enable_health_monitoring=True,
+    ping_interval=30.0,
+    ping_timeout=5.0,
+)
+
+# Connect to the server
+ws.connect()
+
+# Send a text message
+ws.send("Hello, WebSocket!")
+
+# Send a binary message
+ws.send(b"\x01\x02\x03\x04")
+
+# Send a structured object using a subprotocol
+ws = WebSocketConnection(
+    "wss://echo.websocket.org",
+    protocols=["json"],
+)
+ws.connect()
+ws.send({"name": "John", "age": 30})  # Automatically encoded as JSON
+
+# Receive a message with timeout
+try:
+    message = ws.receive(timeout=5.0)
+    if isinstance(message, dict):
+        print(f"Received JSON: {message}")
+    else:
+        print(f"Received: {message.text}")
+except WebSocketTimeoutError:
+    print("Timed out waiting for message")
+
+# Close the connection
+ws.close()
+```
+
+### WebSocket Extensions and Subprotocols
+
+urllib4 supports various WebSocket extensions and subprotocols:
+
+- **Extensions**:
+  - `permessage-deflate`: Compresses WebSocket messages for better performance
+
+- **Subprotocols**:
+  - `json`: Automatically encodes/decodes JSON data
+  - `msgpack`: Efficiently encodes/decodes MessagePack data (requires `msgpack` package)
+  - `cbor`: Efficiently encodes/decodes CBOR data (requires `cbor2` package)
+
+### HTTP/3 Support
+
+```python
+import ai_urllib4
+from ai_urllib4.http3 import HTTP3Connection, HTTP3Settings, QUICSettings, inject_into_urllib4
+
+# Direct HTTP/3 usage
+quic_settings = QUICSettings(
+    enable_multipath=True,  # Enable Multipath QUIC
+    max_paths=4,
+    enable_0rtt=True,       # Enable 0-RTT for faster connections
+)
+
+http3_settings = HTTP3Settings(
+    quic=quic_settings,
+)
+
+# Create an HTTP/3 connection
+conn = HTTP3Connection(
+    "cloudflare-quic.com",  # A server that supports HTTP/3
+    settings=http3_settings,
+)
+
+# Connect and make a request
+conn.connect()
+response = conn.request("GET", "/")
+print(f"Status: {response.status}")
+print(f"Body: {response.data.decode()[:100]}...")
+
+# Close the connection
+conn.close()
+
+# Alternatively, inject HTTP/3 support into ai_urllib4
+inject_into_urllib4()
+
+# Now all HTTPS requests will automatically use HTTP/3 when available
+http = ai_urllib4.PoolManager()
+response = http.request("GET", "https://cloudflare-quic.com/")
+```
+
+### AI-Powered Smart Client
+
+`SmartClient` is a high-level HTTP client that uses AI to learn from response patterns and optimize requests.
+
+```python
+from ai_urllib4 import SmartClient
+from ai_urllib4.exceptions import AIInitializationError
+
+try:
+    # Initialize with AI optimization and your choice of LLM backend
+    client = SmartClient(
+        ai_optimize=True,
+        learn_from_success=True,
+        api_key="YOUR_API_KEY",  # Optional: enables LLM-powered expert advice
+        ai_provider="gemini",    # Optional: "gemini" (default)
+        ai_model="gemini-1.5-flash"
+    )
+except AIInitializationError as e:
+    print(f"AI Initialization failed: {e}")
+    # Fallback to basic client without AI backend
+    client = SmartClient(ai_optimize=True)
+
+# AI will suggest optimal headers/timing and learn from the result
+response = client.request("GET", "https://example.com/api")
+
+# Access learned domain insights
+insights = client.get_domain_insights("example.com")
+print(f"Success rate for example.com: {insights['success_rate']}")
+
+# Detect anomalies or blocks
+# (e.g., detecting Cloudflare challenges or sudden protocol changes)
+anomaly = client.detect_anomaly(response)
+if anomaly["is_anomaly"]:
+    print(f"⚠️ Warning: {anomaly['reason']}")
+```
+
+Key features:
+- **Request Pattern Learning**: Remembers successful timings and headers per domain.
+- **Response Classification**: Distinguishes between normal content, challenges (WAF), and blocks.
+- **Header Optimization**: Suggests and rotates headers based on learned history.
+- **Retry Intelligence**: Adapts retry logic using AI strategies (e.g., increasing delay after a 403).
+- **LLM Backends**: Supports pluggable AI expert advice via Gemini and others.
+- **Hidden API Discovery**: Automatically find internal JSON backends for any HTML page.
+
+```python
+# Automatically find and fetch data from a site's internal JSON API
+response = client.discover_api("https://www.reddit.com/r/python/")
+if response:
+    print(f"Clean JSON data: {response.json_data}")
+```
+
+### 🚀 AsyncIO Support
+
+First-class support for `asyncio` and `anyio` is now available.
+
+```python
+import asyncio
+from ai_urllib4.async_connectionpool import connection_from_url
+
+async def main():
+    pool = connection_from_url("http://httpbin.org")
+    response = await pool.urlopen("GET", "/get")
+    print(response)
+    await pool.close()
+
+asyncio.run(main())
+```
+
+### Enhanced Security Features
+
+urllib4 includes built-in support for advanced security features like HSTS, SPKI Pinning, and Certificate Transparency.
+
+```python
+import ai_urllib4
+from ai_urllib4.util.cert_verification import SPKIPinningVerifier, CertificateTransparencyPolicy
+from ai_urllib4.util.hsts import HSTSCache, HSTSHandler
+
+# HSTS is enabled by default in PoolManager and SmartClient
+# It automatically upgrades HTTP requests to HTTPS for known HSTS hosts
+client = ai_urllib4.PoolManager()
+client.request("GET", "http://github.com") # Automatically upgrades to HTTPS
+
+# You can also manually manage HSTS policies
+hsts_cache = HSTSCache()
+hsts_handler = HSTSHandler(hsts_cache)
+url = "http://github.com"
+secured_url = hsts_handler.secure_url(url)  # Returns https://github.com if policy exists
+
+# Create a pool manager with SPKI pinning
+pins = {
+    "example.com": {"pin-sha256:YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg="}
+}
+http = ai_urllib4.PoolManager(
+    spki_pins=pins,
+    cert_transparency_policy=CertificateTransparencyPolicy.BEST_EFFORT
+)
+```
+
+## Contributing
+
+This project is in its early stages and contributions are welcome! Here's how you can help:
+
+- **Bug Reports**: If you find a bug, please open an issue with detailed information.
+- **Feature Requests**: Have ideas for new features? Open an issue to discuss.
+- **Code Contributions**: Pull requests are welcome for bug fixes or new features.
+- **Documentation**: Help improve or expand the documentation.
+- **Testing**: Help write or improve tests for the codebase.
+
+### Development Guidelines
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Why ai-urllib4? (vs urllib3)
+
+While `ai-urllib4` is built on the solid foundation of `urllib3`, it introduces key differences designed for modern, high-performance applications:
+
+| Feature | urllib3 | ai-urllib4 |
+|---------|---------|------------|
+| **Async Support** | ❌ Synchronous only (blocking) | ✅ **Native AsyncIO** (`async`/`await`) |
+| **Configuration** | Manual Tuning | 🤖 **AI Smart Config** (Heuristic optimization) |
+| **HTTP/2 & 3** | Experimental / Partial | ✅ **First-Class Support** (Multipath QUIC, etc.) |
+| **WebSocket** | Limited / Extension needed | ✅ **Built-in Advanced Support** (Subprotocols, etc.) |
+
+### Key Differentiators:
+
+1.  **🚀 AsyncIO Support**: `ai-urllib4` allows non-blocking requests perfect for apps using `FastAPI`, `Quart`, or standard `asyncio`.
+2.  **🤖 AI-Powered Tuning**: The `AISmartConfig` module automatically suggests timeout and retry settings based on the target URL type (API vs Download).
+3.  **🔒 Modern Security**: Stronger focus on Certificate Transparency and SPKI Pinning out of the box.
+
+## Security Considerations
+
+urllib4 is designed with security in mind, providing robust SSL/TLS verification, certificate transparency checking, and HSTS support. It's suitable for use in production environments where security is a priority.
+
+## Acknowledgements
+
+This project builds on concepts from the urllib3 project and other Python HTTP libraries. We extend our gratitude to the authors and maintainers of these projects for their foundational work.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
