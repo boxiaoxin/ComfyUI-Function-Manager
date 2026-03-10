@@ -513,3 +513,41 @@ Python版本: 3.12.10
 管理员权限: False
 缓存时间...
 2026-03-10 20:25:20,180 - ComfyUI_Manager - INFO - 关闭应用程序
+2026-03-10 20:27:05,488 - ComfyUI_Manager - INFO - 尝试加载配置文件: C:\Users\boxia\Documents\GitHub\ComfyUI-Function-Manager\config.json
+2026-03-10 20:27:05,488 - ComfyUI_Manager - INFO - 配置文件存在: C:\Users\boxia\Documents\GitHub\ComfyUI-Function-Manager\config.json
+2026-03-10 20:27:05,489 - ComfyUI_Manager - INFO - 成功加载配置文件: C:\Users\boxia\Documents\GitHub\ComfyUI-Function-Manager\config.json
+2026-03-10 20:27:05,489 - ComfyUI_Manager - INFO - 配置键: ['services_running', 'last_tab', 'window_position', 'window_size', 'venv_path', 'install_path', 'auto_start', 'theme', 'language']
+2026-03-10 20:27:05,542 - ComfyUI_Manager - INFO - 启动ComfyUI功能管理器
+2026-03-10 20:27:05,543 - ComfyUI_Manager - INFO - 创建主窗口
+2026-03-10 20:27:05,598 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-10 20:27:05,599 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-10 20:21:52
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-10 20:27:05,808 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-10 20:27:05,847 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-10 20:27:05,850 - ComfyUI_Manager - INFO - 切换到标签 system，索引 0
+2026-03-10 20:27:05,850 - ComfyUI_Manager - INFO - 切换到标签: system
+2026-03-10 20:27:05,851 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-10 20:27:05,853 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-10 20:21:52
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-10 20:27:05,856 - ComfyUI_Manager - INFO - 文件管理标签页UI已刷新
+2026-03-10 20:27:05,856 - ComfyUI_Manager - INFO - 一键启动标签页UI已刷新
+2026-03-10 20:27:05,858 - ComfyUI_Manager - INFO - 显示主题设置
+2026-03-10 20:27:05,860 - ComfyUI_Manager - INFO - 自动加载缓存的检测结果
+2026-03-10 20:27:05,861 - ComfyUI_Manager - INFO - 格式化后的检测结果: === 检测概览 ===
+检测时间: 2026-03-10 20:21:52
+操作系统: Windows
+Python版本: 3.12.10
+检测工具版本: 1.0
+管理员权限: False
+缓存时间...
+2026-03-10 20:27:08,673 - ComfyUI_Manager - INFO - 关闭应用程序
